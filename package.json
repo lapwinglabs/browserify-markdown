@@ -1,0 +1,21 @@
+{
+  "name": "browserify-markdown",
+  "version": "0.0.1",
+  "description": "Browserify transform for markdown files",
+  "keywords": [],
+  "author": "Matthew Mueller <matt@lapwinglabs.com>",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/lapwinglabs/browserify-markdown.git"
+  },
+  "dependencies": {
+    "highlight.js": "^8.6.0",
+    "remarkable": "^1.6.0",
+    "string-to-js": "0.0.1",
+    "through": "^2.3.7"
+  },
+  "main": "index",
+  "devDependencies": {
+    "browserify": "^10.2.4"
+  }
+}
