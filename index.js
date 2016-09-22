@@ -2,34 +2,34 @@
  * Module Dependencies
  */
 
-var highlight = require('highlight.js');
-var Remarkable = require('remarkable');
-var extname = require('path').extname;
-var s2j = require('string-to-js');
-var through = require('through');
-var isArray = Array.isArray;
+var highlight = require('highlight.js')
+var Remarkable = require('remarkable')
+var extname = require('path').extname
+var s2j = require('string-to-js')
+var through = require('through')
+var isArray = Array.isArray
 
 /**
  * Export `transform`
  */
 
-module.exports = transform;
+module.exports = transform
 
 /**
  * Default regexp
  */
 
-var rtype = /^(md|markdown)$/;
+var rtype = /^(md|markdown)$/
 
 /**
  * Mappings between remarkable and highlight.js
  */
 
 var language = {
-  'js' : 'javascript',
-  'html' : 'xml',
-  'shell' : 'bash'
-};
+  'js': 'javascript',
+  'html': 'xml',
+  'shell': 'bash'
+}
 
 /**
  * Highlight configuration
@@ -37,7 +37,7 @@ var language = {
 
 highlight.configure({
   tabReplace: '  '
-});
+})
 
 /**
  * Default remarkable configuration
@@ -45,21 +45,21 @@ highlight.configure({
 
 var md = new Remarkable({
   linkify: true,
-  langPrefix : 'lang ',
-  highlight: function(code, lang) {
+  langPrefix: 'lang ',
+  highlight: function (code, lang) {
     // differences between remarkable and highlight.js
-    lang = (language[lang]) ? language[lang] : lang;
+    lang = (language[lang]) ? language[lang] : lang
 
     // Let's not let syntax highlighting kill anything
     try {
       return lang
         ? highlight.highlight(lang, code).value
-        : highlight.highlightAuto(code).value;
-    } catch(e) { }
+        : highlight.highlightAuto(code).value
+    } catch(e) {}
 
-    return '';
+    return ''
   }
-});
+})
 
 /**
  * Initialize `transform`
@@ -67,32 +67,32 @@ var md = new Remarkable({
  * @param {Object} opts
  */
 
-function transform(opts) {
-  if (opts) md.set(opts);
+function transform (opts) {
+  if (opts) md.set(opts)
 
-  return function markdown(file) {
-    var type = extension(file);
-    if (!rtype.test(type)) return through();
+  return function markdown (file) {
+    var type = extension(file)
+    if (!rtype.test(type)) return through()
 
-    var data = '';
-    return through(write, end);
+    var data = ''
+    return through(write, end)
 
     // write
-    function write(buf) {
-      data += buf;
+    function write (buf) {
+      data += buf
     }
 
     // end
-    function end() {
+    function end () {
       try {
         var src = s2j(md.render(data))
       } catch (e) {
-        this.emit('error', e);
-        return;
+        this.emit('error', e)
+        return
       }
 
-      this.queue(src);
-      this.queue(null);
+      this.queue(src)
+      this.queue(null)
     }
   }
 }
@@ -104,6 +104,6 @@ function transform(opts) {
  * @return {String}
  */
 
-function extension(file) {
-  return extname(file).slice(1);
+function extension (file) {
+  return extname(file).slice(1)
 }
