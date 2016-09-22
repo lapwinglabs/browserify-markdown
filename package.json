@@ -9,13 +9,13 @@
     "url": "git://github.com/lapwinglabs/browserify-markdown.git"
   },
   "dependencies": {
-    "highlight.js": "^8.6.0",
+    "highlight.js": "^9.7.0",
     "remarkable": "^1.6.0",
     "string-to-js": "0.0.1",
     "through": "^2.3.7"
   },
   "main": "index",
   "devDependencies": {
-    "browserify": "^10.2.4"
+    "browserify": "^13.1.0"
   }
 }
