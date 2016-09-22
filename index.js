@@ -7,13 +7,12 @@ var Remarkable = require('remarkable')
 var extname = require('path').extname
 var s2j = require('string-to-js')
 var through = require('through')
-var isArray = Array.isArray
 
 /**
- * Export `transform`
+ * Export `markdown`
  */
 
-module.exports = transform
+module.exports = markdown
 
 /**
  * Default regexp
@@ -67,33 +66,30 @@ var md = new Remarkable({
  * @param {Object} opts
  */
 
-function transform (opts) {
+function markdown (file, opts) {
   if (opts) md.set(opts)
+  var type = extension(file)
+  if (!rtype.test(type)) return through()
 
-  return function markdown (file) {
-    var type = extension(file)
-    if (!rtype.test(type)) return through()
+  var data = ''
+  return through(write, end)
 
-    var data = ''
-    return through(write, end)
+  // write
+  function write (buf) {
+    data += buf
+  }
 
-    // write
-    function write (buf) {
-      data += buf
+  // end
+  function end () {
+    try {
+      var src = s2j(md.render(data))
+    } catch (e) {
+      this.emit('error', e)
+      return
     }
 
-    // end
-    function end () {
-      try {
-        var src = s2j(md.render(data))
-      } catch (e) {
-        this.emit('error', e)
-        return
-      }
-
-      this.queue(src)
-      this.queue(null)
-    }
+    this.queue(src)
+    this.queue(null)
   }
 }
 

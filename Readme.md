@@ -5,6 +5,14 @@
 
 ## Usage
 
+### CLI
+
+```sh
+browserify -t [ browserify-markdown ] test/test.js
+```
+
+### Example
+
 ```js
 var str = require('./chapter-1.md');
 document.body.appendChild(str);
@@ -15,12 +23,6 @@ document.body.appendChild(str);
 ```bash
 npm install browserify-markdown
 ```
-
-## Contact
-
-- [friends@lapwinglabs.com](mailto:friends@lapwinglabs.com)
-- [@lapwinglabs](https://twitter.com/lapwinglabs)
-- [lapwinglabs.com](http://lapwinglabs.com)
 
 ## License
 
