@@ -1,8 +1,12 @@
 {
   "name": "browserify-markdown",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Browserify transform for markdown files",
-  "keywords": ["browserify", "transform", "markdown"],
+  "keywords": [
+    "browserify",
+    "transform",
+    "markdown"
+  ],
   "author": "Matthew Mueller <matt@lapwinglabs.com>",
   "repository": {
     "type": "git",
