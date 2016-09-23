@@ -1,6 +1,6 @@
 {
   "name": "browserify-markdown",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Browserify transform for markdown files",
   "keywords": [
     "browserify",
