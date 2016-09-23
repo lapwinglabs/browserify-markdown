@@ -8,7 +8,7 @@ npm install browserify-markdown
 
 ## Usage
 
-```js
+```js example
 var Browserify = require('browserify');
 var markdown = require('../');
 
@@ -19,5 +19,3 @@ Browserify(__dirname + '/test.md')
 ```
 
 ---
-
-From your friends at LeveredReturns.com

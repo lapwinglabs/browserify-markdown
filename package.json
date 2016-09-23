@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "highlight.js": "^9.7.0",
-    "remarkable": "^1.6.0",
+    "remarkable": "github:matthewmueller/remarkable#3b896af",
     "string-to-js": "0.0.1",
     "through": "^2.3.7",
     "through2": "2.0.1"
