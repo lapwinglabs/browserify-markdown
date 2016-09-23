@@ -43,8 +43,10 @@ highlight.configure({
  */
 
 var md = new Remarkable({
-  linkify: true,
-  langPrefix: 'lang ',
+  html:         true,        // Enable HTML tags in source
+  xhtmlOut:     true,        // Use '/' to close single tags (<br />)
+  breaks:       true,        // Convert '\n' in paragraphs into <br>
+  langPrefix: 'lang ',       // CSS language prefix for fenced blocks
   highlight: function (code, lang) {
     // differences between remarkable and highlight.js
     lang = (language[lang]) ? language[lang] : lang
